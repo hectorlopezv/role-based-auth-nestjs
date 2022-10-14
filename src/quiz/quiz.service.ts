@@ -9,14 +9,21 @@ export class QuizService {
   constructor(
     @InjectRepository(Quiz) private readonly quizRepository: Repository<Quiz>,
   ) {}
-  getAllQuiz() {
-    return 'ok';
+  getAllQuiz(): Promise<[Quiz[], number]> {
+    return this.quizRepository
+      .createQueryBuilder('quiz')
+      .leftJoinAndSelect('quiz.questions', 'question')
+      .leftJoinAndSelect('question.options', 'option')
+      .getManyAndCount();
   }
   createQuiz(quizData: CreateQuizDto) {
     return this.quizRepository.save(quizData);
   }
 
   getQuizById(id: number): Promise<Quiz> {
-    return this.quizRepository.findOne({ where: { id } });
+    return this.quizRepository.findOne({
+      where: { id },
+      relations: ['questions', 'questions.options'],
+    });
   }
 }

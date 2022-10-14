@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
 import * as joi from 'joi';
 
 @Module({
@@ -27,9 +28,11 @@ import * as joi from 'joi';
         database: configService.get('DB_NAME'),
         entities: [__dirname + '/../**/*.entity.{js,.ts}'],
         synchronize: true,
+        logging: true,
       }),
       inject: [ConfigService],
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],

@@ -9,7 +9,7 @@ import {
 export class CreateOptionDto {
   @IsString()
   @IsNotEmpty({ message: 'Please enter a text' })
-  @Length(3, 255, {
+  @Length(2, 255, {
     message: 'text Option must be between 3 and 255 characters',
   })
   text: string;
