@@ -1,4 +1,3 @@
-import { Question } from 'src/question/entity-typeorm/questions.entity';
 import {
   BaseEntity,
   Column,
@@ -6,6 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Question } from '../../question/entity-typeorm/questions.entity';
 
 @Entity('options')
 export class Option extends BaseEntity {

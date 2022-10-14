@@ -1,4 +1,3 @@
-import { Question } from 'src/question/entity-typeorm/questions.entity';
 import {
   BaseEntity,
   Column,
@@ -6,6 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Question } from '../../question/entity-typeorm/questions.entity';
 
 @Entity('quizes')
 export class Quiz extends BaseEntity {
@@ -13,7 +13,7 @@ export class Quiz extends BaseEntity {
   id: number;
 
   @Column({ comment: 'Quiz Title', type: 'varchar', unique: true })
-  title: string;
+  a: string;
 
   @Column({ comment: 'Quiz Description', type: 'text' })
   description: string;

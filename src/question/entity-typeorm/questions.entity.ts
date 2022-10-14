@@ -1,5 +1,3 @@
-import { Option } from 'src/option/entity-typeorm/option.entity';
-import { Quiz } from 'src/quiz/entity-typeorm/quiz.entity';
 import {
   BaseEntity,
   Column,
@@ -8,6 +6,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Option } from '../../option//entity-typeorm/option.entity';
+import { Quiz } from '../../quiz/entity-typeorm/quiz.entity';
 
 @Entity('questions')
 export class Question extends BaseEntity {

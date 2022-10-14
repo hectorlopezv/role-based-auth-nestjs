@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsString, Length, Matches } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Length,
+  Matches,
+} from 'class-validator';
 
 const PASSWORD_RULE =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
@@ -13,7 +20,11 @@ export class UserRegisterRequestDto {
 
   @IsNotEmpty()
   @IsString()
+  @IsEmail()
   email: string;
+
+  @IsOptional()
+  testField: string;
 
   @IsNotEmpty()
   @IsString()

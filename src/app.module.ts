@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
 import * as joi from 'joi';
 
 @Module({
@@ -19,6 +18,7 @@ import * as joi from 'joi';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: configService.get('DB_HOST'),
@@ -26,13 +26,12 @@ import * as joi from 'joi';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [__dirname + '/../**/*.entity.{js,.ts}'],
+        entities: [],
+        autoLoadEntities: true,
         synchronize: true,
         logging: true,
       }),
-      inject: [ConfigService],
     }),
-    UserModule,
   ],
   controllers: [],
   providers: [],
