@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as joi from 'joi';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import * as joi from 'joi';
         DB_USERNAME: joi.string().required(),
         DB_PASSWORD: joi.string().required(),
         DB_NAME: joi.string().required(),
+        JWT_SECRET: joi.string().required(),
       }),
     }),
     TypeOrmModule.forRootAsync({
@@ -32,6 +34,7 @@ import * as joi from 'joi';
         logging: true,
       }),
     }),
+    AuthModule,
   ],
   controllers: [],
   providers: [],
