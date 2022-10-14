@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Quiz } from 'src/quiz/quiz-db/entity-typeorm/quiz.entity';
 import { Repository } from 'typeorm';
+
 import { CreateQuizDto } from './dto/create-quiz.dto';
-import { Quiz } from './entity-typeorm/quiz.entity';
 
 @Injectable()
 export class QuizService {
@@ -16,7 +17,7 @@ export class QuizService {
       .leftJoinAndSelect('question.options', 'option')
       .getManyAndCount();
   }
-  createQuiz(quizData: CreateQuizDto) {
+  createQuiz(quizData: CreateQuizDto): Promise<Quiz> {
     return this.quizRepository.save(quizData);
   }
 

@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -14,24 +15,29 @@ const PASSWORD_RULE_MESSAGE =
   'Password should have 1 upper case, lowcase letter along with a number and special character.';
 
 export class UserRegisterRequestDto {
+  @ApiProperty({})
   @IsNotEmpty()
   @IsString()
   name: string;
 
+  @ApiProperty({})
   @IsNotEmpty()
   @IsString()
   @IsEmail()
   email: string;
 
+  @ApiProperty({})
   @IsOptional()
   testField: string;
 
+  @ApiProperty({})
   @IsNotEmpty()
   @IsString()
   @Length(8, 24)
   @Matches(PASSWORD_RULE, { message: PASSWORD_RULE_MESSAGE })
   password: string;
 
+  @ApiProperty({})
   @IsNotEmpty()
   @IsString()
   @Length(8, 24)

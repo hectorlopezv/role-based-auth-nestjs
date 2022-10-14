@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,
@@ -12,21 +13,23 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn({ comment: 'Quiz ID' })
   id: number;
 
+  @ApiProperty({})
   @Column()
   name: string;
 
-  @Column({ nullable: true })
-  testField: string;
-
+  @ApiProperty({})
   @Column({ comment: 'User Email', unique: true })
   email: string;
 
+  @ApiProperty({})
   @Column({ comment: 'User Password' })
   password: string;
 
+  @ApiProperty({})
   @CreateDateColumn()
   createdAt: Date;
 
+  @ApiProperty({})
   @CreateDateColumn()
   updatedAt: Date;
 

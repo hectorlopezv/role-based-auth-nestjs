@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsNotEmpty,
@@ -7,6 +8,7 @@ import {
 } from 'class-validator';
 
 export class CreateOptionDto {
+  @ApiProperty({})
   @IsString()
   @IsNotEmpty({ message: 'Please enter a text' })
   @Length(2, 255, {
@@ -14,10 +16,12 @@ export class CreateOptionDto {
   })
   text: string;
 
+  @ApiProperty({})
   @IsNotEmpty()
   @IsNumber()
   questionId: number;
 
+  @ApiProperty({})
   @IsNotEmpty()
   @IsBoolean()
   isCorrect: boolean;

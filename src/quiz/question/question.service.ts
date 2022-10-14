@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Question } from 'src/question/entity-typeorm/questions.entity';
-import { Quiz } from 'src/quiz/entity-typeorm/quiz.entity';
+import { Question } from 'src/quiz/question/entity-typeorm/questions.entity';
+import { Quiz } from 'src/quiz/quiz-db/entity-typeorm/quiz.entity';
 import { Repository } from 'typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
 
@@ -22,11 +22,5 @@ export class QuestionService {
     quiz.questions = [...quiz.questions, newQuestion];
     await quiz.save();
     return newQuestion;
-  }
-  findQuestionById(id: number) {
-    return this.questionRepository.findOne({
-      where: { id },
-      relations: ['quiz', 'option'],
-    });
   }
 }

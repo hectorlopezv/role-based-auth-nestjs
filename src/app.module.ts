@@ -3,6 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as joi from 'joi';
 import { AuthModule } from './auth/auth.module';
+import { OptionModule } from './quiz/option/option.module';
+import { QuestionModule } from './quiz/question/question.module';
+import { QuizModule } from './quiz/quiz.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -34,8 +38,14 @@ import { AuthModule } from './auth/auth.module';
         logging: true,
       }),
     }),
+
     AuthModule,
+    QuizModule,
+    OptionModule,
+    QuestionModule,
+    UserModule,
   ],
+
   controllers: [],
   providers: [],
 })
