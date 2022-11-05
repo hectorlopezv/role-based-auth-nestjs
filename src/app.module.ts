@@ -5,8 +5,10 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as joi from 'joi';
+import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { ApiTokenCheckMiddleware } from './middleware/api-token-check-middleware';
 import { OptionModule } from './quiz/option/option.module';
@@ -50,9 +52,10 @@ import { UserModule } from './user/user.module';
     OptionModule,
     QuestionModule,
     UserModule,
+    MulterModule.register({ dest: './uploads' }),
   ],
 
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule implements NestModule {
