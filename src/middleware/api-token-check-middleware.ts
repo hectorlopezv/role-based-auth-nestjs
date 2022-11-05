@@ -1,10 +1,11 @@
-import { BadRequestException, NestMiddleware } from '@nestjs/common';
+import { NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
+import { ApiTokenPayment } from 'src/exceptions/api-token.expection';
 
 export class ApiTokenCheckMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     if (req.headers['api-token'] !== 'mytoken') {
-      throw new BadRequestException('the api token is invalid');
+      throw new ApiTokenPayment();
     }
     next();
   }
