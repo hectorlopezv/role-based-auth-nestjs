@@ -33,6 +33,10 @@ export class User extends BaseEntity {
   @CreateDateColumn()
   updatedAt: Date;
 
+  @ApiProperty({})
+  @Column()
+  role: string;
+
   @BeforeInsert()
   async hashPassword(password: string) {
     const salt = await bcrypt.genSalt(200);

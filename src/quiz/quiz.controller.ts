@@ -6,8 +6,10 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiCreatedResponse } from '@nestjs/swagger';
+import { AdminRoleGuard } from 'src/auth/guards/roles/admin/admin.role.guard';
 import { Quiz } from 'src/quiz/quiz-db/entity-typeorm/quiz.entity';
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { QuizService } from './quiz.service';
@@ -38,6 +40,7 @@ export class QuizController {
     description: 'Quiz has been successfully registered',
     type: Quiz,
   })
+  @UseGuards(AdminRoleGuard)
   createQuiz(@Body() quizData: CreateQuizDto) {
     return this.quizService.createQuiz(quizData);
   }
